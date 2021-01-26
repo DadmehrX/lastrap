@@ -20,12 +20,7 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
  */
 client.on("ready", () => {
   console.log(`${client.user.username} ready!`);
-  const voiceChannel = client.channels.cache.get(channel_id)
-  voiceChannel.join().then(() => {
-      console.log("Joined voice channel")
 });
-}
-)
 
 client.on("warn", (info) => console.log(info));
 client.on("error", console.error);
