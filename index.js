@@ -4,7 +4,7 @@
 const { Client, Collection } = require("discord.js");
 const { readdirSync } = require("fs");
 const { join } = require("path");
-const { TOKEN, PREFIX } = require("./util/EvobotUtil");
+const { channel_id,TOKEN, PREFIX } = require("./util/EvobotUtil");
 
 const client = new Client({ disableMentions: "everyone" });
 
@@ -20,8 +20,13 @@ const escapeRegex = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
  */
 client.on("ready", () => {
   console.log(`${client.user.username} ready!`);
-  client.user.setActivity(`radio DVN`, { type: "LISTENING" });
+  const voiceChannel = client.channels.cache.get(channel_id)
+  voiceChannel.join().then(() => {
+      console.log("Joined voice channel")
 });
+}
+)
+
 client.on("warn", (info) => console.log(info));
 client.on("error", console.error);
 
